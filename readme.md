@@ -64,7 +64,7 @@ If you need to produce slide decks, you can
 produce these using markdown with the excellent [marp](https://marp.app/). Again, there is a [VSCode extension](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode) to provide live previews.
 
 To create a powerpoint deck for your markdown slide deck, add an npm script for your file, similar
-to `generate:solution-overview`.
+to `generate:intro`.
 
 ## Publish to confluence
 
