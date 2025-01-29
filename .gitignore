@@ -1,0 +1,17 @@
+.DS_Store
+.npm/
+.idea
+.server
+node_modules
+npm-debug.log
+coverage
+.cache
+.eslintcache
+.env
+docs/.obsidian
+.vscode
+
+# @shelf/jest-mongodb generated file
+globalConfig.json
+
+tsconfig.tsbuildinfo
