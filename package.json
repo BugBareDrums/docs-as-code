@@ -1,0 +1,21 @@
+{
+  "name": "farming-grants-docs",
+  "version": "1.0.0",
+  "description": "A repository of documentation concerning farming grants",
+  "scripts": {
+    "generate": "npm run generate:diagrams && npm run generate:so:pptx && npm run generate:so:html",
+    "generate:diagrams": "find docs -path \"docs/lib\" -prune -o -name \"*.puml\" -print | xargs -I {} npx water-uml export {} -l -d 8088",
+    "generate:so": "npx @marp-team/marp-cli@latest --allow-local-files ./docs/teams/future-rps/frps-solution-overview.md",
+    "generate:so:pptx": "npm run generate:so -- --pptx",
+    "generate:so:html": "npm run generate:so -- --html",
+    "start": "docker run -d -p 8088:8080 plantuml/plantuml-server:tomcat",
+    "start-pod": "podman run -d -p 8088:8080 plantuml/plantuml-server:tomcat",
+    "publish": "dotenv -e .env -- npm run _publish",
+    "_publish": "mark -u $ATLASSIAN_USERNAME -p $ATLASSIAN_API_TOKEN -b https://eaflood.atlassian.net/wiki/  -f \"./docs/**/*.md\" --space FFG --title-from-h1 --parents \"Future Farming Grants Technical Documentation\""
+  },
+  "devDependencies": {
+    "@markdown-confluence/cli": "^5.5.2",
+    "@marp-team/marp-cli": "^4.1.0",
+    "dotenv-cli": "^8.0.0"
+  }
+}

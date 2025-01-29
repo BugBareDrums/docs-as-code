@@ -1,0 +1,24 @@
+@startuml example-system-containers
+!include <C4/C4_Container>
+
+LAYOUT_WITH_LEGEND()
+
+title Container diagram for Example System
+
+Person(customer, "Example Customer", "A customer of Examples plc. Needs examples to prove a point to their boss.")
+System_Ext(example_finder, "Example Finder System", "Scrapes the web for examples.")
+
+System_Boundary(example_system, "Example System") {
+    Container(web_app, "Web Application", "React", "Provides users with a web interface to search and view examples")
+    Container(api, "API Application", "Node.js", "Handles example searches and managing the example database")
+    ContainerDb(mongodb, "Example Database", "MongoDB", "Stores examples, categories, and metadata")
+    ContainerDb(redis, "Cache", "Redis", "Caches frequently accessed examples and search results")
+}
+
+Rel(customer, web_app, "Views examples using", "HTTPS")
+Rel(web_app, api, "Makes API calls to", "JSON/HTTPS")
+Rel(api, mongodb, "Reads from and writes to", "MongoDB Wire Protocol")
+Rel(api, redis, "Reads from and writes to", "Redis Protocol")
+Rel(example_finder, api, "Sends new examples to", "JSON/HTTPS")
+
+@enduml

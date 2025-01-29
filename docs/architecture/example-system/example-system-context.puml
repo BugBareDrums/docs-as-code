@@ -1,0 +1,18 @@
+
+@startuml example-system-context
+  !include <C4/C4_Context>
+
+  LAYOUT_WITH_LEGEND()
+
+  title System Context diagram for Example System
+
+  Person(customer, "Example Customer", "A customer of Examples plc. Needs examples to prove a point to their boss.")
+  System(example_system, "Example System", "Allows users to find suitable examples.")
+
+  System_Ext(example_finder, "Example Finder System", "Scrapes the web for examples.")
+
+  Rel_Up(example_finder, example_system, "Stores examples in")
+
+  Rel(customer, example_system, "Gets examples from")
+
+@enduml
